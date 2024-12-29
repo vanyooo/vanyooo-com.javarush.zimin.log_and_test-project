@@ -1,6 +1,9 @@
+import lombok.extern.log4j.Log4j2;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+@Log4j2
 public class Main {
 
     public static void main(String[] args) throws Exception {
@@ -8,15 +11,16 @@ public class Main {
                 new Horse("Bucephalus", 2.4),
                 new Horse("Ace of Spades", 2.5),
                 new Horse("Zephyr", 2.6),
-                new Horse("Blaze", 2.7),
+                new Horse("Blaze", 3),
                 new Horse("Lobster", 2.8),
                 new Horse("Pegasus", 2.9),
 
                 new Horse("Cherry", 3)
         );
         Hippodrome hippodrome = new Hippodrome(horses);
+        log.info("Начало скачек. Количество участников: {}", horses.size());
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             hippodrome.move();
             watch(hippodrome);
             TimeUnit.MILLISECONDS.sleep(200);
@@ -24,6 +28,7 @@ public class Main {
 
         String winnerName = hippodrome.getWinner().getName();
         System.out.println(winnerName + " wins!");
+        log.info("Окончание скачек. Победитель: {}", winnerName);
     }
 
     private static void watch(Hippodrome hippodrome) throws Exception {
