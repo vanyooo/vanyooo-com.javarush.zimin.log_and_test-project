@@ -1,11 +1,13 @@
+import lombok.Getter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import static java.util.Objects.isNull;
-import lombok.extern.log4j.Log4j2;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
+@Getter
 public class Horse {
 
-    private static final Logger log = LogManager.getLogger(Horse.class);
+    private static final Logger log = LoggerFactory.getLogger(
+            Horse.class);
     private final String name;
     private final double speed;
     private double distance;
@@ -35,18 +37,6 @@ public class Horse {
 
     public Horse(String name, double speed) {
         this(name, speed, 0);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getSpeed() {
-        return speed;
-    }
-
-    public double getDistance() {
-        return distance;
     }
 
     public void move() {
