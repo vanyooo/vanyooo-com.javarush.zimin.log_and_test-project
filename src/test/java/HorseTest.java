@@ -3,9 +3,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.MockedStatic;
-import org.mockito.Mockito;
-import org.mockito.Spy;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mockStatic;
@@ -98,7 +95,9 @@ class HorseTest {
     void move( double randomValue, double expectedDistance) {
         try (MockedStatic<Horse> mockedStatic = mockStatic(Horse.class)) {
             mockedStatic.when(() -> Horse.getRandomDouble(0.2, 0.9)).thenReturn(randomValue);
+
             horseTestTwo.move();
+
             assertEquals(expectedDistance, horseTestTwo.getDistance());
         }
     }

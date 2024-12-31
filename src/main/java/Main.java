@@ -15,12 +15,11 @@ public class Main {
                 new Horse("Blaze", 3),
                 new Horse("Lobster", 2.8),
                 new Horse("Pegasus", 2.9),
-
                 new Horse("Cherry", 3)
         );
         Hippodrome hippodrome = new Hippodrome(horses);
         logger.info("Начало скачек. Количество участников: {}", horses.size());
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 1; i++) {
             hippodrome.move();
             watch(hippodrome);
             TimeUnit.MILLISECONDS.sleep(200);

@@ -1,26 +1,12 @@
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 class HippodromeTest {
-
-    List<Horse> horses = List.of(
-            new Horse("Bucephalus", 2.4, 5),
-            new Horse("Ace of Spades", 2.5, 6),
-            new Horse("Zephyr", 2.6, 7),
-            new Horse("Blaze", 2.7, 8),
-            new Horse("Lobster", 2.8, 9),
-            new Horse("Pegasus", 2.9, 3),
-            new Horse("Cherry", 3, 4)
-    );
-    Hippodrome hippodromeTest = new Hippodrome(horses);
 
     @Test
     void nullHorses() {
@@ -42,19 +28,42 @@ class HippodromeTest {
 
     @Test
     void getHorses() {
-        List<Horse> horses1 = horses;
-        List<Horse> getHorses = hippodromeTest.getHorses();
-        assertEquals(horses1, getHorses);
+        List<Horse> horses = new ArrayList<>();
+        for (int i = 0; i < 30; i++) {
+            horses.add(new Horse("Horse " + i,i,i));
+        }
+
+        Hippodrome hippodrome = new Hippodrome(horses);
+
+        assertEquals(horses, hippodrome.getHorses());
     }
 
     @Test
     void move() {
+        List<Horse> horses = new ArrayList<>();
+        for (int i = 0; i < 50; i++) {
+            horses.add(mock(Horse.class));
+        }
+        Hippodrome hippodrome = new Hippodrome(horses);
+        hippodrome.move();
 
+        for (Horse horse : horses){
+            Mockito.verify(horse).move();
+        }
     }
 
     @Test
     void getWinner() {
+        List<Horse> horses = List.of(
+                new Horse("Bucephalus", 2.4, 5),
+                new Horse("Ace of Spades", 2.5, 6),
+                new Horse("Zephyr", 2.6, 7)
+
+        );
+
+        Hippodrome hippodromeTest = new Hippodrome(horses);
         String name = hippodromeTest.getWinner().getName();
-        assertEquals("Lobster", name);
+
+        assertEquals("Zephyr", name);
     }
 }
