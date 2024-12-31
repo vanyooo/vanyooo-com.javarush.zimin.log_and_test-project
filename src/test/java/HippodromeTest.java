@@ -34,7 +34,8 @@ class HippodromeTest {
 
         Hippodrome hippodrome = new Hippodrome(horses);
 
-        assertEquals(horses, hippodrome.getHorses());
+        assertEquals(horses, hippodrome.getHorses());//git remote add origin https://github.com/vanyooo/vanyooo-com.javarush.zimin.log_and_test-project
+
     }
 
     @Test
